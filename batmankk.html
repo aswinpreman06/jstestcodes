@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     .one{width: 400px;
+     height: 420px;
+     color: red;
+     top: 50%;
+     left: 50%;
+     position: absolute;
+     padding: 60px 70px 50px;
+     transform: translate(-50%,-50%);
+     border: 1px solid black;
+     background-color: azure;} 
+     .second a{float: right;}
+     
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+  ></script>
+</head>
+<body>
+ <div class="one">
+ <h1>SIGN-IN</h1> 
+ <div name="myform" >
+  
+ <input type="text" id="name" placeholder="USERNAME" value=""><br>
+ <br>
+  <label id="err1"></label>
+
+ <input type="password" id="password" placeholder="PASSWORD">
+ <br>
+  <label id="hidden" style="color: red;visibility: hidden;">*NO EMPTY FIELDS*</label>
+ <br>
+ <button id="submit" type="submit" >LOGIN</button>
+ </form> 
+ <div class="second">
+  <input type="checkbox"name="remember" checked="checked">remember me?
+  <a href="file:///C:/Users/Kiran/Desktop/aswin/My%20front%20end%20works/registration%20form.html?firstname=&lastname=&email=&number=&psw=&psw-repeat=">Don't have ann account? <span>REGISTER NOW</span> </a>  
+ </div>
+
+ </div> 
+ <script>
+  $(document).ready(function(){
+    $("#submit").click(function(){
+        var username = $("#name").val().trim();
+        var password = $("#password").val().trim();
+
+        if( username != "" && password != "" ){
+            $.ajax({
+                url:'http://3.12.128.25/api/users/userLogin',
+                type:'post',
+                data: {
+            email: username,
+            password: password
+        },
+                success:function(response){
+                    
+                if(response.status==true){
+                    window.location="table.html";
+                }else if(response.status==0){
+                    alert("not success");
+                }
+                }
+            });
+        }
+    });
+});
+ </script>
+
+</body>
+</html>
