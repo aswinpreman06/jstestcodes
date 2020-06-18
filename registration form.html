@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>REGISTRATION FORM</title>
     <style>
         * {box-sizing: border-box}
 
-/* Add padding to containers */
+
 .one {
   padding: 16px;
 }
 input[type=text], input[type=password] {
-  width: 100%;
+  width: 60%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
@@ -22,6 +22,11 @@ input[type=text], input[type=password] {
 .btn {
   background-color: #f1f1f1;
   text-align: center;
+}
+body{
+  background-image: url("bat.jpg");
+  background-position: cover;
+
 }
     </style>
 </head>
@@ -58,7 +63,7 @@ input[type=text], input[type=password] {
           
           <input type="password" placeholder="Repeat Password" name="psw-repeat" id="repeat">
           <br>
-          <label id="cin " style="visibility: hidden;">PASSWORD DOESNOT MATCH</label>
+          <label id="cin" style="visibility: hidden;">PASSWORD DOESNOT MATCH</label>
           
 
           <hr>
@@ -73,6 +78,11 @@ input[type=text], input[type=password] {
       
    
 </div> 
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  
 <script>
   function validate(){
    var firstname=document.getElementById("firstname").value;
@@ -114,7 +124,7 @@ input[type=text], input[type=password] {
        document.getElementById("pass").innerHTML="password must be atleat 5 character"
        document.getElementById("pass").style.color="red";
        
-   }else
+   }else{
     document.getElementById("pass").style.visibility="hidden";
    }
    if(str==con)
@@ -123,7 +133,19 @@ input[type=text], input[type=password] {
    }else{
     document.getElementById("cin").style.visibility="visible";
    }
-   
+   $.ajax({
+        url: "https://reqres.in/api/users",
+        type: "POST",
+        data: {
+            email: email,
+             password:str
+        },
+        success: function(response){
+          window.location.replace("login.html");
+        }
+   });
+  }
+  
   
 </script>   
 </body>
