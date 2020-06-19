@@ -1,15 +1,16 @@
- <script>
+ 
   $(document).ready(function(){
     $("#submit").click(function(){
       login();
     });
   }); 
   function login(){
+    
     var user_name= $("#name").val();
     var password= $("#password").val();
     if((user_name=="" || password=="")){
-      $("#err1").html("no empty fields");
-      $("#err1").css("color","red");
+      $("#hidden").text("no empty fields");
+      $("#hidden").css("color","red");
       return false;
     }
     $.ajax({
@@ -25,4 +26,5 @@
     });
       
   }
- </script>
+  
+ 
